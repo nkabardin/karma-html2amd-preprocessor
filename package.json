@@ -1,0 +1,24 @@
+{
+  "name": "karma-html2amd-preprocessor",
+  "version": "0.1.0",
+  "description": "A Karma plugin. Convert HTML files into AMD modules.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nkabardin/karma-html2amd-preprocessor.git"
+  },
+  "keywords": [
+    "karma-plugin",
+    "karma-preprocessor",
+    "html",
+    "amd"
+  ],
+  "author": "Nikita Kabardin <nikita@kabardin.com>",
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {
+    "karma": ">=0.9"
+  },
+  "license": "MIT",
+  "contributors": []
+}
