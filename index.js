@@ -7,14 +7,20 @@ var escapeContent = function(content) {
   return content.replace(/'/g, '\\\'').replace(/\r?\n/g, '\\n\' +\n    \'');
 };
 
-var createHtml2AMDPreprocessor = function(logger) {
+var createHtml2AMDPreprocessor = function(logger, config) {
+  var prefix = "";
+
+  if (config && config.prefix) {
+    prefix = config.prefix;
+  }
+
   var log = logger.create('preprocessor.html2amd');
 
   return function(content, file, done) {
     log.debug('Processing "%s".', file.originalPath);
 
     var fileNameChunks = file.originalPath.split('/');
-    var fileName = fileNameChunks[fileNameChunks.length - 1];
+    var fileName = prefix + fileNameChunks[fileNameChunks.length - 1];
 
     log.debug(util.format(TEMPLATE, fileName, escapeContent(content)))
 
@@ -24,7 +30,7 @@ var createHtml2AMDPreprocessor = function(logger) {
   };
 };
 
-createHtml2AMDPreprocessor.$inject = ['logger'];
+createHtml2AMDPreprocessor.$inject = ['logger', 'config.html2amdPreprocessor'];
 
 module.exports = {
   'preprocessor:html2amd': ['factory', createHtml2AMDPreprocessor]
